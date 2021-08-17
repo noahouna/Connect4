@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdbool.h>
 
+
 bool game_over = false;
 
 int turn = 0;
@@ -15,8 +16,6 @@ int row_3[] = {0, 0, 0, 0, 0, 0};
 int row_4[] = {0, 0, 0, 0, 0, 0};
 int row_5[] = {0, 0, 0, 0, 0, 0};
 
-
-
 //////////////////////////
 // check if move is valid
 //////////////////////////
@@ -28,13 +27,9 @@ bool valid_move(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[],
 
   if (validinput == false)
   {
-
     printf("\nInvalid move. Try again.\n");
-
     return true; // input is invalid
   }
-
-
   return false;  // input is valid
 }
 
@@ -44,9 +39,7 @@ bool valid_move(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[],
 
 int open(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int row_5[], int col)
 {
-
   int r;
-
 
   if (row_5[col - 1] == 0)
   {
@@ -72,9 +65,7 @@ int open(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int ro
             {
               r = 0;
             }
-
   return r;
-
 }
 
 //////////////////////////////////
@@ -160,7 +151,6 @@ void drop(int turn, int open, int row_0[], int row_1[], int row_2[], int row_3[]
 
 int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int row_5[])
 {
-
   printf("\n");
 
   for (int i = 0; i < 6; i++)
@@ -178,7 +168,6 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
       printf(" X ");
     }
   }
-
   printf("\n");
 
   for (int i = 0; i < 6; i++)
@@ -196,7 +185,6 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
       printf(" X ");
     }
   }
-
   printf("\n");
 
   for (int i = 0; i < 6; i++)
@@ -214,7 +202,6 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
       printf(" X ");
     }
   }
-
   printf("\n");
 
   for (int i = 0; i < 6; i++)
@@ -232,7 +219,6 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
       printf(" X ");
     }
   }
-
   printf("\n");
 
   for (int i = 0; i < 6; i++)
@@ -250,7 +236,6 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
       printf(" X ");
     }
   }
-
   printf("\n");
 
   for (int i = 0; i < 6; i++)
@@ -268,10 +253,7 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
       printf(" X ");
     }
   }
-
   printf("\n");
-
-
   return 0;
 }
 
@@ -284,49 +266,37 @@ int printboard(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], 
 bool status(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int row_5[], int col, int turn)
 {
 
-
   int board[36];
-
 
   for (int i = 0; i < 36; i++)    // Create local array to iterate through
   {
     board[i] = 0;
   }
 
-
-
   for (int i = 0; i < 6; i++)      // Join size 6 row arrays to size 36 board array
   {
     board[i + 30] = row_5[i];
   }
-
   for (int i = 0; i < 6; i++)
   {
     board[i + 24] = row_4[i];
   }
-
   for (int i = 0; i < 6; i++)
   {
     board[i + 18] = row_3[i];
   }
-
   for (int i = 0; i < 6; i++)
   {
     board[i + 12] = row_2[i];
   }
-
   for (int i = 0; i < 6; i++)
   {
     board[i + 6] = row_1[i];
   }
-
   for (int i = 0; i < 6; i++)
   {
     board[i] = row_0[i];
   }
-
-
-
   for (int i = 0; i < 36; i += 6)   // Check for horizontal wins
   {
 
@@ -348,9 +318,6 @@ bool status(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int
     }
   }
 
-
-
-
   for (int i = 0; i < 6; i++)  // Check for vertical wins
   {
     for (int k = i; (k / 6) < 3; k += 6)
@@ -371,8 +338,6 @@ bool status(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int
     }
   }
 
-
-
   for (int i = 18; i <= 30; i += 6)  // Check for positively sloped diagonal wins
   {
     for (int k = i; (k % 6) < 3; k++)
@@ -392,8 +357,6 @@ bool status(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int
       }
     }
   }
-
-
 
   for (int i = 0; i <= 12; i += 6)  // Check for negatively sloped diagonal wins
   {
@@ -423,10 +386,8 @@ bool status(int row_0[], int row_1[], int row_2[], int row_3[], int row_4[], int
     printf("\nTie Game.\n");
     return true;
   }
-
   return false;
 }
-
 
 
 int main(void)
@@ -439,51 +400,32 @@ int main(void)
 
   while (game_over == false)
   {
-
     bool invalidinput = true;
-
     while (invalidinput == true)
     {
-
       if (turn == 0)   // Ask for Player 1 input
       {
-
         printf("\nPlayer 1, choose a column (1-6): ");
         scanf(" %c", &col);
-
       }
-
       else  // Ask for Player 2 input
       {
-
         printf("\nPlayer 2, choose a column (1-6): ");
         scanf(" %c", &col);
-
       }
 
-
       int temp = (int)col - 48;  // Convert ASCII to integer
-
       invalidinput = valid_move(row_0, row_1, row_2, row_3, row_4, row_5, temp);
-
     }
-
     col = (int)col - 48;     // Convert ASCII value to integer
-
     int openrow = open(row_0, row_1, row_2, row_3, row_4, row_5, col);
-
     drop(turn, openrow, row_0, row_1, row_2, row_3, row_4, row_5, col);
-
     printboard(row_0, row_1, row_2, row_3, row_4, row_5);
-
     bool *p = &game_over;   // pointer to address of game_over global variable
-
     *p = status(row_0, row_1, row_2, row_3, row_4, row_5, col, turn);  // update game_over indirectly
-
     turn++;                 // Increment turn
     turn = turn % 2;
 
   }
-
   return 0;
 }
